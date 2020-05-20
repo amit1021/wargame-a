@@ -1,15 +1,10 @@
 #include <iostream>
+#include "Soldier.hpp"
 
-class FootSoldier
+class FootSoldier : public Soldier
 {
-private:
-    int health;
-    int damage;
-    int player;
 
 public:
-    FootSoldier(int player){this.player = player;}
+    FootSoldier(int player) : Soldier(100,10,player){} 
     ~FootSoldier();
 };
-
-
