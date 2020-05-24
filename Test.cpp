@@ -5,7 +5,7 @@
 
 using namespace WarGame;
 
-TEST_CASE("Test 1, easy test, RealVariable")
+TEST_CASE("Test 1")
 {
 			WarGame::Board b = new Board(4,4);
 			// Add soldiers for player 1:

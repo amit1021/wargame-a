@@ -1,4 +1,3 @@
-  
 #pragma once
 /**
  * This is a game that demonstrates how to use the Board class.
@@ -26,5 +25,10 @@ namespace WarGame {
 		 * This function runs a sample play of the game and returns the winner (1 or 2, or 0 in case of tie).
 		 */
 		uint play(); 
+
+ 		/**
+		 * The destructor deletes the soldiers from the board.
+		 */
+		//~DemoGame();
 	};
 }
