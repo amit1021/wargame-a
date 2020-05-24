@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Soldier.hpp"
-class ParamedicCommander : Soldier
+class ParamedicCommander : public Soldier
 {
 
 public:

@@ -1,9 +1,9 @@
 #include <iostream>
 #include "Soldier.hpp"
-class Paramedic : Soldier
+class Paramedic : public Soldier
 {
 
 public:
-    Paramedic(int player):Soldier(100,50,player){}
+    Paramedic(int player) : Soldier(100, 50, player) {}
     ~Paramedic();
 };
