@@ -10,7 +10,6 @@
 #include "ParamedicCommander.hpp"
 
 using namespace WarGame;
-int num = 0;
 TEST_CASE("Test 1")
 {
 	Board board(4, 4);
@@ -60,14 +59,42 @@ TEST_CASE("Test 1")
 
 	board.move(1, {0, 1}, Board::MoveDIR::Up);
 	CHECK(board[{1, 1}]->pointHealth > board[{3, 1}]->pointHealth);
+	CHECK(board[{0, 1}] == nullptr);
+	CHECK(board[{1, 1}] != nullptr);
 	board.move(2, {3, 1}, Board::MoveDIR::Down);
-	CHECK(board[{3, 1}]->pointHealth == board[{1, 1}]->pointHealth);
+	CHECK(board[{2, 1}]->pointHealth == board[{1, 1}]->pointHealth);
+	CHECK(board[{3, 1}] == nullptr);
+	CHECK(board[{2, 1}] != nullptr);
 	board.move(1, {1, 1}, Board::MoveDIR::Right);
-	CHECK(board[{1, 1}]->pointHealth > board[{2, 1}]->pointHealth);
+	CHECK(board[{1, 2}]->pointHealth > board[{2, 1}]->pointHealth);
+	CHECK(board[{1, 1}] == nullptr);
+	CHECK(board[{1, 2}] != nullptr);
 	board.move(2, {3, 2}, Board::MoveDIR::Down);
 	CHECK(board[{2, 2}]->pointHealth > board[{0, 3}]->pointHealth);
+	CHECK(board[{3, 2}] == nullptr);
+	CHECK(board[{2, 2}] != nullptr);
+	board.move(1, {0, 2}, Board::MoveDIR::Up);
+	CHECK(board[{1, 3}]->pointHealth > board[{2, 2}]->pointHealth);
+	board.move(2, {2, 2}, Board::MoveDIR::Right);
+	CHECK(board[{2, 3}]->pointHealth == board[{1, 3}]->pointHealth);
+	CHECK(board[{2, 2}] == nullptr);
+	CHECK(board[{2, 3}] != nullptr);
+	board.move(1, {1, 2}, Board::MoveDIR::Left);
+	CHECK(board[{1, 1}]->pointHealth == board[{2, 1}]->pointHealth);
+	CHECK(board[{1, 2}] == nullptr);
+	CHECK(board[{1, 1}] != nullptr);
+	board.move(2, {2, 3}, Board::MoveDIR::Left);
+	CHECK(board[{2, 2}] == nullptr);
+	CHECK(board[{2, 3}] != nullptr);
+	CHECK_THROWS((board[{2, 1}]->pointHealth < board[{1, 1}]->pointHealth));
+	CHECK_THROWS((board[{3,3}]->pointHealth != board[{0, 2}]->pointHealth));
+	CHECK_THROWS((board[{1, 3}]->pointHealth > board[{2, 2}]->pointHealth));
+	CHECK(board[{1, 1}]->pointHealth < board[{2, 1}]->pointHealth);
+	CHECK(board[{2, 2}]->pointHealth > board[{1, 3}]->pointHealth);
+	CHECK(board[{3, 3}]->pointHealth == board[{1, 2}]->pointHealth);
 
-	num += 26;
+
+
 }
 
 TEST_CASE("Test 2")
@@ -129,6 +156,10 @@ TEST_CASE("Test 2")
 	CHECK(board[{2, 2}] == nullptr);
 	CHECK(board[{5, 3}] == nullptr);
 	CHECK(board[{3, 2}] == nullptr);
+	CHECK(board[{2, 1}] == nullptr);
+	CHECK(board[{5, 2}] == nullptr);
+	CHECK(board[{6, 6}] == nullptr);
+	CHECK(board[{2, 3}] == nullptr);
 
 	CHECK_THROWS((board[{6, 3}] == nullptr));
 	CHECK_THROWS((board[{6, 4}] == nullptr));
@@ -138,9 +169,17 @@ TEST_CASE("Test 2")
 	CHECK_THROWS((board[{4, 4}] != nullptr));
 
 	//play
+	board.move(1, {0, 5}, Board::MoveDIR::Up);
+	CHECK(board[{1, 5}]->pointHealth > board[{6, 5}]->pointHealth);
+	board.move(2, {6, 0}, Board::MoveDIR::Down);
+	CHECK(board[{0, 0}]->pointHealth < board[{5, 0}]->pointHealth);
+	CHECK(board[{0, 0}]->pointHealth < board[{6, 1}]->pointHealth);
+	CHECK(board[{0, 0}]->pointHealth < board[{6, 3}]->pointHealth);
+	CHECK(board[{0, 0}]->pointHealth > board[{6, 5}]->pointHealth);
+	CHECK(board[{6, 0}] == nullptr);
+	CHECK(board[{0, 5}] == nullptr);
+	CHECK(board[{6, 0}] != nullptr);
+	CHECK(board[{1, 5}] != nullptr);
 
-	
 
-	num += 38;
-	printf("number of test : %d\n", num);
 }
