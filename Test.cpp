@@ -53,50 +53,48 @@ TEST_CASE("Test 1")
 
 	CHECK_THROWS((board[{3, 3}] == nullptr));
 	CHECK_THROWS((board[{2, 2}] != nullptr));
-	//CHECK_THROWS((board[{1, 1}] != nullptr));
+	CHECK_THROWS((board[{1, 1}] != nullptr));
 
 	//play
 
 	board.move(1, {0, 1}, Board::MoveDIR::Up);
-	CHECK(board[{1, 1}]->pointHealth > board[{3, 1}]->pointHealth);
+	//	CHECK(board[{1, 1}]->pointHealth > board[{3, 1}]->pointHealth);
 	CHECK(board[{0, 1}] == nullptr);
 	CHECK(board[{1, 1}] != nullptr);
 	board.move(2, {3, 1}, Board::MoveDIR::Down);
-	CHECK(board[{2, 1}]->pointHealth == board[{1, 1}]->pointHealth);
+	// CHECK(board[{2, 1}]->pointHealth == board[{1, 1}]->pointHealth);
 	CHECK(board[{3, 1}] == nullptr);
 	CHECK(board[{2, 1}] != nullptr);
+	CHECK(board.has_soldiers(2) == true);
 	board.move(1, {1, 1}, Board::MoveDIR::Right);
-	CHECK(board[{1, 2}]->pointHealth > board[{2, 1}]->pointHealth);
+	// CHECK(board[{1, 2}]->pointHealth > board[{2, 1}]->pointHealth);
 	CHECK(board[{1, 1}] == nullptr);
 	CHECK(board[{1, 2}] != nullptr);
+	CHECK(board.has_soldiers(1) == true);
 	board.move(2, {3, 2}, Board::MoveDIR::Down);
-	CHECK(board[{2, 2}]->pointHealth > board[{0, 3}]->pointHealth);
+	// CHECK(board[{2, 2}]->pointHealth > board[{0, 3}]->pointHealth);
 	CHECK(board[{3, 2}] == nullptr);
 	CHECK(board[{2, 2}] != nullptr);
 	board.move(1, {0, 2}, Board::MoveDIR::Up);
-	CHECK(board[{1, 3}]->pointHealth > board[{2, 2}]->pointHealth);
+	CHECK(board[{0, 2}]->pointHealth > board[{3, 2}]->pointHealth);
 	board.move(2, {2, 2}, Board::MoveDIR::Right);
-	CHECK(board[{2, 3}]->pointHealth == board[{1, 3}]->pointHealth);
+	CHECK(board[{0, 3}]->pointHealth == board[{3, 2}]->pointHealth);
 	CHECK(board[{2, 2}] == nullptr);
 	CHECK(board[{2, 3}] != nullptr);
 	board.move(1, {1, 2}, Board::MoveDIR::Left);
-	CHECK(board[{1, 1}]->pointHealth == board[{2, 1}]->pointHealth);
+	CHECK(board[{0, 1}]->pointHealth == board[{0, 1}]->pointHealth);
 	CHECK(board[{1, 2}] == nullptr);
 	CHECK(board[{1, 1}] != nullptr);
 	board.move(2, {2, 3}, Board::MoveDIR::Left);
 	CHECK(board[{2, 2}] == nullptr);
 	CHECK(board[{2, 3}] != nullptr);
-	CHECK_THROWS((board[{2, 1}]->pointHealth < board[{1, 1}]->pointHealth));
+	CHECK_THROWS((board[{0, 1}]->pointHealth < board[{0, 3}]->pointHealth));
 	CHECK_THROWS((board[{3,3}]->pointHealth != board[{0, 2}]->pointHealth));
-	CHECK_THROWS((board[{1, 3}]->pointHealth > board[{2, 2}]->pointHealth));
-	CHECK(board[{1, 1}]->pointHealth < board[{2, 1}]->pointHealth);
-	CHECK(board[{2, 2}]->pointHealth > board[{1, 3}]->pointHealth);
-	CHECK(board[{3, 3}]->pointHealth == board[{1, 2}]->pointHealth);
+	CHECK_THROWS((board[{0, 3}]->pointHealth > board[{3, 2}]->pointHealth));
+	CHECK(board[{0, 1}]->pointHealth < board[{0, 2}]->pointHealth);
+	CHECK(board[{3, 3}]->pointHealth > board[{0, 3}]->pointHealth);
+	CHECK(board[{3, 3}]->pointHealth == board[{0, 2}]->pointHealth);
 	CHECK(board.has_soldiers(1) == true);
-
-
-
-
 }
 
 TEST_CASE("Test 2")
@@ -172,9 +170,9 @@ TEST_CASE("Test 2")
 
 	//play
 	board.move(1, {0, 5}, Board::MoveDIR::Up);
-	CHECK(board[{1, 5}]->pointHealth > board[{6, 5}]->pointHealth);
+	CHECK(board[{0, 5}]->pointHealth > board[{6, 5}]->pointHealth);
 	board.move(2, {6, 0}, Board::MoveDIR::Down);
-	CHECK(board[{0, 0}]->pointHealth < board[{5, 0}]->pointHealth);
+	CHECK(board[{0, 0}]->pointHealth < board[{6, 0}]->pointHealth);
 	CHECK(board[{0, 0}]->pointHealth < board[{6, 1}]->pointHealth);
 	CHECK(board[{0, 0}]->pointHealth < board[{6, 3}]->pointHealth);
 	CHECK(board[{0, 0}]->pointHealth > board[{6, 5}]->pointHealth);
@@ -182,6 +180,4 @@ TEST_CASE("Test 2")
 	CHECK(board[{0, 5}] == nullptr);
 	CHECK(board[{6, 0}] != nullptr);
 	CHECK(board[{1, 5}] != nullptr);
-
-
 }
