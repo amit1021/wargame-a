@@ -53,7 +53,7 @@ TEST_CASE("Test 1")
 
 	CHECK_THROWS((board[{3, 3}] == nullptr));
 	CHECK_THROWS((board[{2, 2}] != nullptr));
-	CHECK_THROWS((board[{4, 4}] != nullptr));
+	//CHECK_THROWS((board[{1, 1}] != nullptr));
 
 	//play
 
@@ -92,6 +92,8 @@ TEST_CASE("Test 1")
 	CHECK(board[{1, 1}]->pointHealth < board[{2, 1}]->pointHealth);
 	CHECK(board[{2, 2}]->pointHealth > board[{1, 3}]->pointHealth);
 	CHECK(board[{3, 3}]->pointHealth == board[{1, 2}]->pointHealth);
+	CHECK(board.has_soldiers(1) == true);
+
 
 
 
