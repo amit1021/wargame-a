@@ -89,7 +89,7 @@ TEST_CASE("Test 1")
 	CHECK(board[{2, 2}] == nullptr);
 	CHECK(board[{2, 3}] != nullptr);
 	CHECK_THROWS((board[{0, 1}]->pointHealth < board[{0, 3}]->pointHealth));
-	CHECK_THROWS((board[{3,3}]->pointHealth != board[{0, 2}]->pointHealth));
+	CHECK_THROWS((board[{3, 3}]->pointHealth != board[{0, 2}]->pointHealth));
 	CHECK_THROWS((board[{0, 3}]->pointHealth > board[{3, 2}]->pointHealth));
 	CHECK(board[{0, 1}]->pointHealth < board[{0, 2}]->pointHealth);
 	CHECK(board[{3, 3}]->pointHealth > board[{0, 3}]->pointHealth);
