@@ -5,6 +5,6 @@ class FootCommander : public Soldier
 {
 
 public:
-    FootCommander(int player) : Soldier(100,10,player){} 
+    FootCommander(int player) : Soldier(150,20,player){} 
     ~FootCommander();
 };

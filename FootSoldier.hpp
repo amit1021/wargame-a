@@ -6,6 +6,5 @@ class FootSoldier : public Soldier
 
 public:
     FootSoldier(int player) : Soldier(100, 10, player) {}
-    void shoot(Soldier s, std::pair<int, int> source);
     ~FootSoldier();
 };
